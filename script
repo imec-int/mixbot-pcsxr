@@ -1,0 +1,8 @@
+tell app "ePSXe1.6"
+	activate
+end tell
+tell app "System Events"
+	key down {command}
+	keystroke "q"
+	key up {command}
+end tell

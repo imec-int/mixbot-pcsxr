@@ -1,0 +1,19 @@
+{
+  "name": "mixbot-pcsxr",
+  "version": "0.0.0",
+  "description": "send keypresses to pcsxr from somewhere else (e.g. mixbot?)",
+  "main": "udpserver.js",
+  "dependencies": {
+    "applescript": "~0.2.1",
+    "keypress": "~0.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mixbe/mixbot-pcsxr"
+  },
+  "author": "MiX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixbe/mixbot-pcsxr/issues"
+  }
+}
