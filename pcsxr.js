@@ -34,7 +34,7 @@ function processQueue(){
 	if(keyQueue.length > 0){
 		processing = true;
 		keysend.sendKeysToApp(keyQueue[0], 'PCSXR');
-		console.log(keyQueue[0]);
+		// console.log(keyQueue[0]);
 		keyQueue.shift();
 		setTimeout(processQueue, 1000);
 	} else processing = false;
@@ -44,27 +44,34 @@ module.exports = function(robot) {
 	robot.hear(/[\s\S]*/, function(msg) {
 		clearTimeout(timeoutHandle);
 		var user = msg.message.user.name;
+		// console.log(user);
 		var isPlayer1 = player1.indexOf(user) >= 0;
 		var isPlayer2 = player2.indexOf(user) >= 0;
-		if(isPlayer1)
+		if(isPlayer1){
 			addToQueueForPlayer(msg.match[0], 'player1');
-		else if(isPlayer2)
+			// console.log('player1 entry');
+		}
+		else if(isPlayer2){
 			addToQueueForPlayer(msg.match[0], 'player2');
+			// console.log('player2 entry');
+		}
 		else {
 			if(player1.length <= player2.length) {
 				player1.push(user);
 				addToQueueForPlayer(msg.match[0], 'player1');
+				// console.log('player1 entry');
 			}
 			else {
 				player2.push(user);
 				addToQueueForPlayer(msg.match[0], 'player2');
+				// console.log('player2 entry');
 			}
 		}
 		if(!processing) processQueue();
-		setTimeout(function(){
+		timeoutHandle = setTimeout(function(){
 			player1.length = 0;
 			player2.length = 0;
 			keyQueue.length = 0;
-		}, 7200);
+		}, 7200000);
 	});
 };
